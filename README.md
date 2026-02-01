@@ -5,14 +5,14 @@ A voice-enabled chatbot that mimics your credentials and personality for intervi
 ## Features
 - **Voice Interface**: Talk to the bot using your microphone.
 - **Real-time Visualization**: Glowing orb animation that reacts to listening/speaking states.
-- **AI-Powered**: Uses Google Gemini to generate contextual responses.
+- **AI-Powered**: Uses **Groq (Llama 3)** for ultra-fast, conversational responses.
 - **Customizable Persona**: Easily update the system prompt to reflect your own bio.
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js installed
-- A Google Cloud API Key for Gemini (Free tier available at [aistudio.google.com](https://aistudio.google.com/))
+- A **Groq API Key** (Free tier available at [console.groq.com](https://console.groq.com/keys))
 
 ### Installation
 
@@ -21,9 +21,12 @@ A voice-enabled chatbot that mimics your credentials and personality for intervi
     ```bash
     npm install
     ```
-3.  Create a `.env.local` file in the root directory and add your API Key:
+3.  Create a `.env.local` file in the root directory and add your Groq Configuration:
     ```bash
-    GOOGLE_API_KEY=your_actual_api_key_here
+    # Groq API Configuration
+    OPENAI_API_KEY=gsk_your_groq_key_here
+    OPENAI_BASE_URL=https://api.groq.com/openai/v1
+    AI_MODEL=llama-3.1-8b-instant
     ```
 4.  Run the development server:
     ```bash
@@ -40,9 +43,9 @@ Replace the placeholder text with your real life story, superpower, etc.
 
 1.  Push this code to a GitHub repository.
 2.  Go to [Vercel](https://vercel.com) and import the project.
-3.  In the **Environment Variables** section during deployment, add:
-    - Name: `GOOGLE_API_KEY`
-    - Value: `your_gemini_api_key`
+3.  In the **Environment Variables** section during deployment, you MUST add:
+    - `OPENAI_API_KEY`: Your Groq Key (`gsk_...`)
+    - `OPENAI_BASE_URL`: `https://api.groq.com/openai/v1`
+    - `AI_MODEL`: `llama-3.1-8b-instant`
 4.  Click **Deploy**.
 5.  Share the generated URL!
-# ai-chat-bot
