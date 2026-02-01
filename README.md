@@ -2,6 +2,8 @@
 
 A voice-enabled chatbot that mimics your credentials and personality for interview questions.
 
+**[🎙️ Live Demo](https://ai-chatbot-gamma-sepia.vercel.app/)**
+
 ## Features
 - **Voice Interface**: Talk to the bot using your microphone.
 - **Real-time Visualization**: Glowing orb animation that reacts to listening/speaking states.
