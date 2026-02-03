@@ -1,6 +1,0 @@
-[dotenv@17.2.3] injecting env (4) from .env.local -- tip: ­ƒöÉ prevent building .env in docker: https://dotenvx.com/prebuild
-Testing models for API Key...
-Trying gemini-2.0-flash... ÔØî Failed (GoogleGenerativeAI Error)
-Trying gemini-1.5-flash... ÔØî Failed (GoogleGenerativeAI Error)
-Trying gemini-pro... ÔØî Failed (GoogleGenerativeAI Error)
-All models failed.
