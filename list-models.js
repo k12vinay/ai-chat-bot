@@ -1,32 +1,22 @@
-const https = require('https');
+require('dotenv').config({ path: '.env.local' });
+const OpenAI = require("openai");
 
-const apiKey = "AIzaSyDlmmKBIW7-SGUiuOJk8-Acx5IDV5rmWns";
-const url = `https://generativelanguage.googleapis.com/v1/models?key=${apiKey}`;
-
-console.log("Fetching models...");
-
-https.get(url, (res) => {
-    let data = '';
-
-    res.on('data', (chunk) => {
-        data += chunk;
-    });
-
-    res.on('end', () => {
-        try {
-            const json = JSON.parse(data);
-            if (json.models) {
-                console.log("✅ AVAILABLE MODELS:");
-                json.models.forEach(m => console.log(`- ${m.name}`));
-            } else {
-                console.log("❌ ERROR RESPONSE:", data);
-            }
-        } catch (e) {
-            console.log("❌ PARSE ERROR:", e.message);
-            console.log("RAW:", data);
-        }
-    });
-
-}).on("error", (err) => {
-    console.log("Error: " + err.message);
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    baseURL: process.env.OPENAI_BASE_URL,
 });
+
+async function listModels() {
+    console.log("Fetching models...");
+    try {
+        const list = await openai.models.list();
+        console.log("✅ AVAILABLE MODELS:");
+        list.data.forEach((model) => {
+            console.log(`- ${model.id}`);
+        });
+    } catch (error) {
+        console.error("❌ Error fetching models:", error.message);
+    }
+}
+
+listModels();

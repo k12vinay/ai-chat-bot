@@ -1,19 +1,26 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+require('dotenv').config({ path: '.env.local' });
+const OpenAI = require("openai");
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    baseURL: process.env.OPENAI_BASE_URL,
+});
 
 async function test() {
     console.log("Starting test...");
-    try {
-        // Hardcoded key for testing only
-        const apiKey = "AIzaSyDlmmKBIW7-SGUiuOJk8-Acx5IDV5rmWns";
-        const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const modelName = process.env.AI_MODEL || "llama-3.1-8b-instant";
 
-        console.log("Sending message...");
-        const result = await model.generateContent("Hello, are you there?");
+    try {
+        console.log(`Sending message using model: ${modelName}...`);
+        const completion = await openai.chat.completions.create({
+            messages: [{ role: "user", content: "Hello, are you there?" }],
+            model: modelName,
+        });
+
         console.log("Response received:");
-        console.log(result.response.text());
+        console.log(completion.choices[0].message.content);
     } catch (error) {
-        console.error("Test Failed:", error);
+        console.error("Test Failed:", error.message);
     }
 }
 

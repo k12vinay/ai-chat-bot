@@ -33,3 +33,10 @@ ts-debug.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local test scripts
+list-models.js
+simple-test.js
+find-model.js
+test-gemini.js
+*_output.txt
